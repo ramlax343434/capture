@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --color: #1e293b;
+            --c1: #ebb800;
+            --c2: #000000;
+            --c3: #0051ff;
+            --gradient: linear-gradient( 60deg, var(--c3), var(--c2), var(--c1), var(--c2), var(--c3));
+            --scale-start: 0.5;
+            --scale-end: 1.001;
+            --hover-offset: 5%;
+            /* linear easing generator */
+            --ease-elastic: linear( 0, 0.186 2.1%, 0.778 7.2%, 1.027 9.7%, 1.133, 1.212, 1.264, 1.292 15.4%, 1.296, 1.294, 1.285, 1.269 18.9%, 1.219 20.9%, 1.062 25.8%, 0.995 28.3%, 0.944 31.1%, 0.93, 0.921, 0.92 35.7%, 0.926, 0.94 39.7%, 1.001 47%, 1.014, 1.021 52.4%, 1.02 56.4%, 1 65.5%, 0.994 70.7%, 1.001 88.4%, 1);
+            --ease-bounce-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @media (prefers-reduced-motion) {
+             :root {
+                --scale-start: var(--scale-end);
+                --ease-elastic: ease-out;
+                --ease-bounce-out: ease-out;
+                --hover-offset: 0;
+            }
+        }
+        
+        body {
+            font-feature-settings: "palt" 1;
+            font-family: 'Noto Serif JP', serif;
+            background: #ffffff;
+            margin: 0;
+            /* Remove default margin */
+            display: flex;
+            /* Use flexbox for centering */
+            align-items: center;
+            /* Center vertically */
+            justify-content: center;
+            /* Center horizontally */
+            height: 100vh;
+            /* Full viewport height */
+            overflow: hidden;
+            /* Prevent scrollbars */
+            font-family: "Pacifico", cursive;
+        }
+        
+        .container {
+            text-align: center;
+            overflow: visible;
+            /* Ensure overflow is visible */
+            padding: 20px;
+            /* Add padding to prevent clipping */
+        }
+        
+        .copy {
+            font-size: 0;
+        }
+        
+        .copy span {
+            font-family: "Pacifico", cursive;
+            margin-inline: auto;
+            padding-block: 0.2em;
+            max-inline-size: 15ch;
+            text-wrap: balance;
+            background-image: var(--gradient);
+            background-size: 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 21vw;
+            /* Responsive font size */
+            font-weight: 1000;
+            /* Increased font weight */
+            display: inline-block;
+            /* Ensure inline-block to prevent cutting off */
+            white-space: nowrap;
+            /* Prevent line breaks */
+        }
+        /* Media query for larger screens */
+        
+        @media (min-width: 768px) {
+            .copy span {
+                font-size: 150px;
+                /* Font size for larger screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="copy">
+            <span>Cc</span>
+        </h2>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script>
+        gsap.fromTo('.copy span', {
+            x: 50,
+            opacity: 0,
+        }, {
+            delay: 2, // 1 second delay
+            duration: 1, // 1 second duration
+            x: 0,
+            opacity: 1,
+            ease: 'power2.easeOut',
+            stagger: {
+                from: 'start', // Start from the left
+                amount: 0.5, // 0.5 seconds apart
+            },
+            onComplete: function() {
+                setTimeout(function() {
+                    window.location.href = "main.html"; // Redirect to main.html after a 2-second delay
+                }, 2000); // 2000 milliseconds = 2 seconds
+            }
+        });
+    </script>
+</body>
+
+</html>
